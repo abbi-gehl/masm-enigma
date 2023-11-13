@@ -28,16 +28,16 @@ _asmMain PROC
 _asmMain ENDP; ending main
 
 
-_hashChar PROC
+_hashChar PROC;		this function takes a char and converts it to an index of an array of 8 elements
 	push rbp
-	push rbx
+	push rbp;	push stack frame
 
-	xor rdx, rdx
-	mov rax, [rcx]
-	mov rcx, 8
-	div rcx
+	xor rdx, rdx;		clearing remainder register
+	mov rax, [rcx];		moving the divitend to the rax register
+	mov rcx, 8;		moving the divisor to the rcx register
+	div rcx;		dividing char by 8
 
-	pop rbx
+	pop rbx;	pop stack frame
 	pop rbp
 	ret
 _hashChar ENDP; ending hashing function
