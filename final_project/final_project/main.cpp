@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <string>
+#include <map>
 
 using namespace std;
 
@@ -57,10 +58,16 @@ extern "C" string _readFile(int mode) {
 	return line;
 }
 
-extern "C" void _clearOutputFile() {
+// Harrison B - Clears file depending on the mode of use (input or output)
+extern "C" void _clearFile(int mode) {
 	ofstream file;
 
-	file.open("output.txt", ios::trunc);
+	if (mode == 0) {
+		file.open("input.txt", ios::trunc);
+	}
+	if (mode != 0) {
+		file.open("output.txt", ios::trunc);
+	}
 
 	if (file.is_open()) {
 		if (file.good())
