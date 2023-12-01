@@ -1,30 +1,22 @@
 _printString PROTO
 _getString PROTO
+_writeFile PROTO
+_readFile PROTO
 
 extrn ExitProcess : proc; defining the exit process
 
-
-pair STRUCT
-	key DB ?
-	value DB ?
-pair ENDS
-
 .data
 
-msg1 byte "e",0
-
-
-test pair <1,2>
+msg1 byte "e",0; testing
 
 .code
 _asmMain PROC
-	
 
 	push rbp
 	sub rsp, 20h
 	lea rbp, [rsp + 20h]		; align stack pointer
 
-	lea rcx, msg1
+	lea rcx, msg1	;testing
 	call _hashChar
 
 	lea rsp, [rbp];				stack eplilogue code
