@@ -3,7 +3,6 @@
 #include <fstream>
 #include <string>
 
-
 using namespace std;
 
 extern "C" void _asmMain();
@@ -56,6 +55,29 @@ extern "C" string _readFile(int mode) {
 	}
 	file.close();
 	return line;
+}
+
+extern "C" void _clearOutputFile() {
+	ofstream file;
+
+	file.open("output.txt", ios::trunc);
+
+	if (file.is_open()) {
+		if (file.good())
+		{
+			cout << "\nFile Cleared!\n";
+		}
+		else
+		{
+			cout << "\nFile Unable to be cleared!\n";
+		}
+	}
+	else
+	{
+		cout << "\nFile Unable to be cleared!\n";
+	}
+	file.close();
+	return;
 }
 
 // main stub driver
