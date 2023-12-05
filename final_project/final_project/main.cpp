@@ -37,10 +37,9 @@ extern "C" void _writeFile(string input, int mode) {
 
 }
 
-extern "C" string _readFile(int mode) {
+extern "C" void _readFile(char* buffer,int mode) {
 	ifstream file;
-	string output = "";
-	string line;
+	const char* charArr = {};
 
 	if (mode == 0) {
 		file.open("input.txt", ios::in);
@@ -50,12 +49,13 @@ extern "C" string _readFile(int mode) {
 	}
 
 	if (file.is_open()) {
-		while (file.good()) {
-			getline(file, line);
+		while (!file.eof()) {
+			file >> buffer;
 		}
 	}
 	file.close();
-	return line;
+
+	return;
 }
 
 // Harrison B - Clears file depending on the mode of use (input or output)
