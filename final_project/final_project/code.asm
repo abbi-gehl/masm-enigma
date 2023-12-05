@@ -4,10 +4,6 @@ _writeFile PROTO
 _clearFile PROTO
 _readFile PROTO
 
-extrn CreateFileA : proc	; A = ANSI
-extrn ReadFile : proc
-extrn CloseHandle : proc
-
 extrn ExitProcess : proc; defining the exit process
 
 .data
@@ -16,7 +12,6 @@ msg1 byte "e",0; testing
 msg2 byte "assembly",0
 charBuffer byte 64 DUP (0)
 
-
 .code
 _asmMain PROC
 
@@ -24,18 +19,18 @@ _asmMain PROC
 	sub rsp, 20h
 	lea rbp, [rsp + 20h]		; align stack pointer
 
-	lea rsi, msg2
+
+	lea rsi, msg2				;moving msg 2 to buffer
 	lea rdi, charBuffer
 	mov rcx, 10
 	cld
 	rep movsb
+	call _iterateBuffer			;testing iterate buffer function
 
 
-	lea rcx, charBuffer
+	lea rcx, charBuffer			;testing readFile
 	mov rdx, 0
 	call _readFile
-
-	;call _iterateBuffer
 
 	xor rax,rax
 	lea rsp, [rbp];				stack eplilogue code
