@@ -1,8 +1,14 @@
 #include "Rotor.h"
 
-extern "C" void _initRotors() {
+void Rotor::incremeantIndex()
+{
+	rotorIndex++;
+}
+
+void Rotor::initRotor()
+{
 	for (int i = 0; i < 26; i++)
 	{
-		firstRotor[normalAlphabet[i]] = firstRotorArray[i];
+		rotorValue[normalAlphabet[i]] = firstRotorArray[i];
 	}
 }
