@@ -13,16 +13,9 @@ extrn ExitProcess : proc; defining the exit process
 .data
 
 msg1 byte "e",0; testing
-msg2 byte "gumping it",0
+msg2 byte "assembly",0
 charBuffer byte 64 DUP (0)
 
-
-num QWORD 63
-sourceFile BYTE "input.txt",0			;name of source file
-FD QWORD ?
-read QWORD ?
-charsRead QWORD 0
-closed QWORD ?
 
 .code
 _asmMain PROC
@@ -47,6 +40,7 @@ _asmMain PROC
 	xor rax,rax
 	lea rsp, [rbp];				stack eplilogue code
 	pop rbp
+
 	xor rcx,rcx
 	call ExitProcess; starting the exit process
 
