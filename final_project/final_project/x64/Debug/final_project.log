@@ -1,3 +1,2 @@
-﻿  Assembling code.asm...
-code.asm(21): error A2006: undefined symbol : _getRotorValue
-C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\BuildCustomizations\masm.targets(70,5): error MSB3721: The command "ml64.exe /c /nologo /Zi /Fo"x64\Debug\code.obj" /W3 /errorReport:prompt  /Tacode.asm" exited with code 1.
+﻿  main.cpp
+  final_project.vcxproj -> C:\Users\hjbpe\source\repos\Masn-Enigma\final_project\x64\Debug\final_project.exe

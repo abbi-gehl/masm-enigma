@@ -17,7 +17,7 @@ _asmMain PROC
 	lea rbp, [rsp + 20h]		; align stack pointer
 
 	lea rcx, msg1	;testing
-	call _hashChar
+	call _getString
 
 	lea rsp, [rbp];				stack eplilogue code
 	pop rbp

@@ -12,10 +12,11 @@ extern "C" void _printString(char* s) {
 	return;
 }
 
-extern "C" string _getString() {
+extern "C" void _getString(char * buffer, int bufferSize) {
 	string s;
 	cin >> s;
-	return s;
+	strcpy_s(buffer, bufferSize, s.c_str());
+	return;
 }
 
 /*File I/O by Abbi Gehlbach */
@@ -36,7 +37,7 @@ extern "C" void _writeFile(string input, int mode) {
 
 }
 
-extern "C" string _readFile(int mode) {
+extern "C" void _readFile(int mode, char * buffer, int bufferSize) {
 	ifstream file;
 	string output = "";
 	string line;
@@ -53,8 +54,10 @@ extern "C" string _readFile(int mode) {
 			getline(file, line);
 		}
 	}
+
+	strcpy_s(buffer, bufferSize, line.c_str());
 	file.close();
-	return line;
+	return;
 }
 
 // Harrison B - Clears file depending on the mode of use (input or output)
@@ -85,6 +88,8 @@ extern "C" void _clearFile(int mode) {
 	file.close();
 	return;
 }
+
+
 
 // main stub driver
 int main() {
