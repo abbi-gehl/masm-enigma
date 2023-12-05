@@ -37,10 +37,13 @@ extern "C" void _writeFile(string input, int mode) {
 
 }
 
+<<<<<<< HEAD
 extern "C" void _readFile(int mode, char * buffer, int bufferSize) {
+=======
+extern "C" void _readFile(char* buffer,int mode) {
+>>>>>>> main
 	ifstream file;
-	string output = "";
-	string line;
+	const char* charArr = {};
 
 	if (mode == 0) {
 		file.open("input.txt", ios::in);
@@ -50,13 +53,17 @@ extern "C" void _readFile(int mode, char * buffer, int bufferSize) {
 	}
 
 	if (file.is_open()) {
-		while (file.good()) {
-			getline(file, line);
+		while (!file.eof()) {
+			file >> buffer;
 		}
 	}
 
 	strcpy_s(buffer, bufferSize, line.c_str());
 	file.close();
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 	return;
 }
 
