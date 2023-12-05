@@ -4,25 +4,13 @@ _writeFile PROTO
 _clearFile PROTO
 _readFile PROTO
 
-extrn CreateFileA : proc	; A = ANSI
-extrn ReadFile : proc
-extrn CloseHandle : proc
-
 extrn ExitProcess : proc; defining the exit process
 
 .data
 
 msg1 byte "e",0; testing
-msg2 byte "gumping it",0
+msg2 byte "assembly",0
 charBuffer byte 64 DUP (0)
-
-
-num QWORD 63
-sourceFile BYTE "input.txt",0			;name of source file
-FD QWORD ?
-read QWORD ?
-charsRead QWORD 0
-closed QWORD ?
 
 .code
 _asmMain PROC
@@ -62,6 +50,7 @@ _hashChar PROC;		this function takes a char and converts it to an index of an ar
 
 	ret
 _hashChar ENDP; ending hashing function
+
 
 _iterateBuffer PROC;	by Abbi G: iterate through charBuffer will be adapted for later use. Currently just shifts up the bits
 
