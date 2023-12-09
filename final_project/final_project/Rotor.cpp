@@ -1,14 +1,27 @@
 #include "Rotor.h"
 
-void Rotor::incremeantIndex()
-{
-	rotorIndex++;
+void Rotor::increment() {
+	if (rotorIndex < 25) {
+		rotorIndex++;
+	}
+	else {
+		rotorIndex = 0;
+	}
 }
 
-void Rotor::initRotor()
-{
-	for (int i = 0; i < 26; i++)
-	{
-		rotorValue[normalAlphabet[i]] = firstRotorArray[i];
-	}
+int Rotor::getRotorIndex() {
+	return rotorIndex;
+}
+
+void Rotor::setRotorIndex(char index, char value) {
+	rotor[index] = value;
+	return;
+}
+
+int Rotor::getNotchIndex() {
+	return notchMinecraft;
+}
+
+void Rotor::setNotchIndex(int notch) {
+	notchMinecraft = notch;
 }
