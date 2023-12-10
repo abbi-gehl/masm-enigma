@@ -18,12 +18,18 @@ const char reflectorArray[26] = { 'Y','R','U','H','Q','S','L','D','P','X','N','G
 
 class Rotor {
 public:
+
 	int increment();
 
 	int getRotorIndex();
-	void setRotorIndex(char index, char value);
+	void setRotorIndex(int index);
+
+	void setRotorMap(char index, char value);
 
 	void setReverseRotorIndex(char index, char value);
+
+	map<char, char> getRotor();
+	map<char, char> getRotorReverse();
 
 	int getNotchIndex();
 	void setNotchIndex(int notch);
@@ -32,16 +38,21 @@ private:
 	std::map<char, char> rotor{ };
 	std::map<char, char> rotorReverse{ };
 	int rotorIndex = 0;
-	int notchMinecraft;
+	int notchMinecraft = 0;
 };
 
 class Enigma {
 public:
+	Enigma();
+
 	void initRotors();
 	void incrementRotors();
 
+	string encrpyt(string word);
+
 private:
 	Rotor rotors[3];
+	std::map<char, char>::iterator it{ };
 	std::map<char, char> reflector{ };
 };
 
