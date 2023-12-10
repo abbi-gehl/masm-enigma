@@ -46,6 +46,61 @@ map<char, char> Rotor::getRotorReverse() {
 	return rotorReverse;
 }
 
+char Rotor::encrypt(char text, int offset) {
+	char output;
+	int index;
+	std::map<char, char>::iterator it;
+
+	if (offset != -1)
+	{
+		index = int(text) - 65 - offset;
+		if (index < 0) {
+			index = 26 - abs(index);
+		}
+		it = rotor.begin();
+		advance(it, index);
+		output = it->first;
+	}
+	it = rotor.find(text);
+	// Rotor
+	for (int j = 0; j < rotorIndex; j++) {
+		if (next(it) == rotor.end()) {
+			it = rotor.begin();
+		}
+		else {
+			advance(it, 1);
+		}
+	}
+	output = it->second;
+
+	return output;
+}
+
+char Rotor::secondEncrypt(char text, int offset) {
+	char output;
+	std::map<char, char>::iterator it;
+
+	int index = int(text) - 65 - offset;	
+	if (index < 0) {
+		index = 26 - abs(index);
+	}
+	it = rotor.begin();
+	advance(it, index);
+	output = it->first;
+	it = rotor.find(text);
+	for (int j = 0; j < rotorIndex; j++) {
+		if (next(it) == rotor.end()) {
+			it = rotor.begin();
+		}
+		else {
+			advance(it, 1);
+		}
+	}
+	output = it->second;
+
+	return output;
+}
+
 // Class function definitions for Enigma - Written by Harrison Blair
 // Initializes the forwards and backwards rotors for each one in the Enigma machine
 Enigma::Enigma() {
@@ -106,131 +161,32 @@ string Enigma::encrpyt(string word) { // Code originally created by Abbi, modifi
 	
 
 	for (int i = 0; i < word.length(); i++) {
-		char charSrc = word[i];
-		it = rotors[0].getRotor().find(charSrc);
+		char charDst = word[i];
+
 		incrementRotors();
 
-		// First Rotor
-		for (int j = 0; j < rotors[0].getRotorIndex(); j++) {
-			if (next(it) == rotors[0].getRotor().end()) {
-				it = rotors[0].getRotor().begin();
-			}
-			else {
-				advance(it, 1);
-			}
-		}
-		char charDst = it->second;
-
-		// Second Rotor
-		int index = int(charDst) - 65 - rotors[0].getRotorIndex();
-		if (index < 0) {
-			index = 26 - abs(index);
-		}
-		it = rotors[1].getRotor().begin();
-		advance(it, index);
-		charDst = it->first;
-		it = rotors[1].getRotor().find(charDst);
-		for (int j = 0; j < rotors[1].getRotorIndex(); j++) {
-			if (next(it) == rotors[1].getRotor().end()) {
-				it = rotors[1].getRotor().begin();
-			}
-			else {
-				advance(it, 1);
-			}
-		}
-		charDst = it->second;
-
-		// Third Rotor
-		index = int(charDst) - 65 - rotors[1].getRotorIndex();
-		if (index < 0) {
-			index = 26 - abs(index);
-		}
-		it = rotors[2].getRotor().begin();
-		advance(it, index);
-		charDst = it->first;
-		it = rotors[2].getRotor().find(charDst);
-		for (int j = 0; j < rotors[2].getRotorIndex(); j++) {
-			if (next(it) == rotors[2].getRotor().end()) {
-				it = rotors[2].getRotor().begin();
-			}
-			else {
-				advance(it, 1);
-			}
-		}
-		charDst = it->second;
+		charDst = rotors[0].encrypt(charDst, -1);
+		charDst = rotors[1].encrypt(charDst, rotors[0].getRotorIndex());
+		charDst = rotors[2].encrypt(charDst, rotors[1].getRotorIndex());
 
 		// Reflector
-		index = int(charDst) - 65 - rotors[2].getRotorIndex();
+		int index = int(charDst) - 65 - rotors[2].getRotorIndex();
 		if (index < 0) {
 			index = 26 - abs(index);
 		}
-		it = reflector.begin();
+		std::map<char, char>::iterator it = reflector.begin();
 		advance(it, index);
 		charDst = it->first;
 		charDst = reflector.find(charDst)->second;
 
-		// Thrid Rotor Reverse
-		index = int(charDst) - 65;
-		if (index < 0) {
-			index = 26 - abs(index);
-		}
-		it = rotors[2].getRotorReverse().begin();
-		advance(it, index);
-		charDst = it->first;
-		it = rotors[2].getRotorReverse().find(charDst);
-		for (int j = 0; j < rotors[2].getRotorIndex(); j++) {
-			if (next(it) == rotors[2].getRotorReverse().end()) {
-				it = rotors[2].getRotorReverse().begin();
-			}
-			else {
-				advance(it, 1);
-			}
-		}
-		charDst = it->second;
-
-		// Second Rotor Reverse
-		index = int(charDst) - 65 - rotors[2].getRotorIndex();
-		if (index < 0) {
-			index = 26 - abs(index);
-		}
-		it = rotors[1].getRotorReverse().begin();
-		advance(it, index);
-		charDst = it->first;
-		it = rotors[1].getRotorReverse().find(charDst);
-		for (int j = 0; j < rotors[1].getRotorIndex(); j++) {
-			if (next(it) == rotors[1].getRotorReverse().end()) {
-				it = rotors[1].getRotorReverse().begin();
-			}
-			else {
-				advance(it, 1);
-			}
-		}
-		charDst = it->second;
-
-		// First Rotor Reverse
-		index = int(charDst) - 65 - rotors[1].getRotorIndex();
-		if (index < 0) {
-			index = 26 - abs(index);
-		}
-		it = rotors[0].getRotorReverse().begin();
-		advance(it, index);
-		charDst = it->first;
-		it = rotors[0].getRotorReverse().find(charDst);
-		for (int j = 0; j < rotors[0].getRotorIndex(); j++) {
-			if (next(it) == rotors[0].getRotorReverse().end()) {
-				it = rotors[0].getRotorReverse().begin();
-			}
-			else {
-				advance(it, 1);
-			}
-		}
-		charDst = it->second;
+		charDst = rotors[2].secondEncrypt(charDst, 0);
+		charDst = rotors[1].secondEncrypt(charDst, rotors[2].getRotorIndex());
+		charDst = rotors[0].secondEncrypt(charDst, rotors[1].getRotorIndex());
 
 		index = int(charDst) - 65 - rotors[0].getRotorIndex();
 		if (index < 0) {
 			index = 26 - abs(index);
 		}
-		
 		charDst = normalAlphabet[index];
 
 		encrypted += charDst;
