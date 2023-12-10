@@ -1,7 +1,4 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <string>
+#include "Rotor.h"
 
 using namespace std;
 
@@ -37,11 +34,8 @@ extern "C" void _writeFile(string input, int mode) {
 
 }
 
-<<<<<<< HEAD
 extern "C" void _readFile(int mode, char * buffer, int bufferSize) {
-=======
-extern "C" void _readFile(char* buffer,int mode) {
->>>>>>> main
+	string line;
 	ifstream file;
 	const char* charArr = {};
 
@@ -60,10 +54,6 @@ extern "C" void _readFile(char* buffer,int mode) {
 
 	strcpy_s(buffer, bufferSize, line.c_str());
 	file.close();
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 	return;
 }
 

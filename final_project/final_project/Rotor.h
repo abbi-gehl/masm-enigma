@@ -6,6 +6,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -17,27 +18,30 @@ const char reflectorArray[26] = { 'Y','R','U','H','Q','S','L','D','P','X','N','G
 
 class Rotor {
 public:
-	void increment();
+	int increment();
 
 	int getRotorIndex();
 	void setRotorIndex(char index, char value);
+
+	void setReverseRotorIndex(char index, char value);
+
 	int getNotchIndex();
 	void setNotchIndex(int notch);
 
 private:
 	std::map<char, char> rotor{ };
 	std::map<char, char> rotorReverse{ };
-	int rotorIndex;
+	int rotorIndex = 0;
 	int notchMinecraft;
 };
 
 class Enigma {
 public:
 	void initRotors();
-	void incrementRotor();
+	void incrementRotors();
 
 private:
 	Rotor rotors[3];
-	std::map<char, char> reflector{};
+	std::map<char, char> reflector{ };
 };
 

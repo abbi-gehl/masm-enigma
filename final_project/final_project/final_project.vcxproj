@@ -128,7 +128,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Enigma.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Rotor.cpp" />
   </ItemGroup>
