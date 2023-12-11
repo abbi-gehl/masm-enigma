@@ -101,7 +101,6 @@ _asmMain PROC
 	call CloseHandle			; close file handle
 	mov closed, rax				; save status
 
-
 	lea rsp, [rbp];				stack eplilogue code
 	pop rbp
 	xor rcx,rcx
