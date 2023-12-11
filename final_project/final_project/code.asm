@@ -161,6 +161,8 @@ _iterateBuffer PROC;	by Abbi G: iterate through charBuffer to convert all letter
 		cmp rdi, rbx
 		jne bufferItr
 
+	cmp rax, 0			;checking if any characters were removed
+	je finish
 
 	sub rdi, rax
 	clearJunk:				;clearing junk that piles up when a character is skipped T??E~~ST would equal TEST
@@ -172,6 +174,9 @@ _iterateBuffer PROC;	by Abbi G: iterate through charBuffer to convert all letter
 		jne clearJunk	
 
 	sub charsRead, rax		;adjust chars read to new size
+
+	finish:
+
 	ret
 _iterateBuffer ENDP;
 
