@@ -19,6 +19,8 @@ _asmMain PROC
 	sub rsp, 20h
 	lea rbp, [rsp + 20h]		; align stack pointer
 
+	lea rcx, msg1	;testing
+	call _getString
 	lea rsi, msg2
 	lea rdi, charBuffer
 	mov rcx, 10
@@ -31,7 +33,6 @@ _asmMain PROC
 	call _readFile
 
 	;call _iterateBuffer
-
 	xor rax,rax
 	lea rsp, [rbp];				stack eplilogue code
 	pop rbp
