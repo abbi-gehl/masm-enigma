@@ -1,12 +1,14 @@
 _printString PROTO
 _getString PROTO
 _newLine PROTO
+_encrypt PROTO
 
 extrn ExitProcess : proc; defining the exit process
 extrn CreateFileA : proc	; A = ANSI
 extern WriteFile: proc
 extrn ReadFile : proc
 extrn CloseHandle : proc
+
 
 .data
 
@@ -75,7 +77,12 @@ _asmMain PROC
 
 	lea rcx, charBuffer
 	call _printString
+	
+	call _newLine
 
+	lea rcx, charBuffer
+	mov rdx, 36
+	call _encrypt
 
 	;Opening output file by Abbi G, 
 	;adapted from https://github.com/brianrhall/Assembly/blob/master/Chapter_10/Program%2010.8/Program_10.8_Windows_MASM.asm
