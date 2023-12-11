@@ -172,7 +172,7 @@ _iterateBuffer PROC;	by Abbi G: iterate through charBuffer to convert all letter
 
 	sub rdi, rax
 	clearJunk:				;clearing junk that piles up when a character is skipped T??E~~ST would equal TEST
-		mov cl, 20h
+		mov cl, 0h
 		mov [rsi+rdi], cl
 		inc rdi
 		
