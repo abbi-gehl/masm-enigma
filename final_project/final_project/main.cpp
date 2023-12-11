@@ -18,13 +18,18 @@ extern "C" void _newLine() {
 	cout << endl;
 }
 
-// main stub driver
-int main() {
-	string str1 = "THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG";
+extern "C" void _encrypt(char* buffer, int size) {
+	string str1 = "";
 	string str2 = "";
 	string str3 = "";
-	Enigma machine;
 
+	for (int i = 0; i < size - 1; i++)
+	{
+		str1 = str1 + buffer[i];
+	}
+
+	Enigma machine;
+	
 	cout << "Source:" << str1 << endl;
 
 	str2 = machine.encrpyt(str1);
@@ -34,7 +39,10 @@ int main() {
 	str3 = machine.encrpyt(str2);
 
 	cout << "Decrypted:" << str3 << endl;
+}
 
+// main stub driver
+int main() {
 	_asmMain();
 	return 0;
 }
