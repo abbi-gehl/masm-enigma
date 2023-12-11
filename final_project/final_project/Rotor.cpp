@@ -47,7 +47,7 @@ map<char, char> Rotor::getRotorReverse() {
 }
 
 char Rotor::encrypt(char text, int offset) {
-	char output;
+	char output = text;
 	int index;
 	std::map<char, char>::iterator it;
 
@@ -61,7 +61,7 @@ char Rotor::encrypt(char text, int offset) {
 		advance(it, index);
 		output = it->first;
 	}
-	it = rotor.find(text);
+	it = rotor.find(output);
 	// Rotor
 	for (int j = 0; j < rotorIndex; j++) {
 		if (next(it) == rotor.end()) {
@@ -77,20 +77,20 @@ char Rotor::encrypt(char text, int offset) {
 }
 
 char Rotor::secondEncrypt(char text, int offset) {
-	char output;
+	char output = text;
 	std::map<char, char>::iterator it;
 
-	int index = int(text) - 65 - offset;	
+	int index = int(output) - 65 - offset;	
 	if (index < 0) {
 		index = 26 - abs(index);
 	}
-	it = rotor.begin();
+	it = rotorReverse.begin();
 	advance(it, index);
 	output = it->first;
-	it = rotor.find(text);
+	it = rotorReverse.find(output);
 	for (int j = 0; j < rotorIndex; j++) {
-		if (next(it) == rotor.end()) {
-			it = rotor.begin();
+		if (next(it) == rotorReverse.end()) {
+			it = rotorReverse.begin();
 		}
 		else {
 			advance(it, 1);
@@ -158,11 +158,9 @@ void Enigma::incrementRotors() {
 string Enigma::encrpyt(string word) { // Code originally created by Abbi, modified for use with the classes by Harrison
 	string encrypted = "";
 	initRotors();
-	
 
 	for (int i = 0; i < word.length(); i++) {
 		char charDst = word[i];
-
 		incrementRotors();
 
 		charDst = rotors[0].encrypt(charDst, -1);
