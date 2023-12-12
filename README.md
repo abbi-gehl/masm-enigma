@@ -10,7 +10,7 @@ Clone the repository into a visual studio workspace. Type the message you want t
 
 **When writing your message to input.txt, the message should be at or below 256 characters long**
 
-The program runs through the encryption, writes the result in output.txt, and prints it to the console. As Enigma is a symmetric encryption method, if you run an encrypted method back through the encryption algorithm, it will return the plaintext you entered. To do this just copy the message encrypted in the output file, paste it into the input file, and run the program again. With the real Enigma machine, you can change the order and position of the rotors, and use different settings for the switchboard. Figuring out these settings every day was what made Enigma so hard to crack for the Allies in WWII. More can be read about this in our write-up.
+The program runs through the encryption, writes the result in output.txt, and prints it to the console. As Enigma is a symmetric encryption method, if you run an encrypted message back through the encryption algorithm, it will return the plaintext you entered. To do this just copy the message encrypted in the output file, paste it into the input file, and run the program again. With the real Enigma machine, you can change the order and position of the rotors, and use different settings for the switchboard. Figuring out these settings every day was what made Enigma so hard to crack for the Allies in WWII. More can be read about this in our write-up.
 
 ## Link to Research Proposal
 > https://www.overleaf.com/read/kmtzjhjrthzq#c4e403
