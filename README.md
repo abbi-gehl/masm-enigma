@@ -6,7 +6,7 @@ You may be asking: "Why on earth would you do this?" Good question, it is for a 
 Authored by Abbi Gehlbach and Harrison Blair
 
 ## How to Use
-Clone the repository into a visual studio workspace. Type the message you want to encrypt or decrypt into the input.txt file. Ideally, you should format your message in all CAPS and only use letters. If you include spaces in your message, they will be replaced with a 'J' character as Engima did not encode spaces. Any punctuation added will be omitted as Enigma did not use punctuation. However, you could enter a message like "Hello, please encrypt this!" and the program handles any overhead with data cleanup. 
+Clone the repository into a visual studio workspace and open the .sln file. Type the message you want to encrypt or decrypt into the input.txt file. Ideally, you should format your message in all CAPS and only use letters. If you include spaces in your message, they will be replaced with a 'J' character as Engima did not encode spaces. Any punctuation added will be omitted as Enigma did not use punctuation. However, you could enter a message like "Hello, please encrypt this!" and the program handles any overhead with data cleanup. 
 
 **When writing your message to input.txt, the message should be at or below 256 characters long**
 
