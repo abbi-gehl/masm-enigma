@@ -39,6 +39,13 @@ extern "C" void _encrypt(char* buffer, int size) {
 	str3 = machine.encrpyt(str2);
 
 	cout << "Decrypted:" << str3 << endl;
+
+	char* charArray = new char[size + 1];
+	strcpy_s(charArray, size, str2.c_str());
+	for (int i = 0; i < size - 1; i++)
+	{
+		buffer[i] = charArray[i];
+	}
 }
 
 // main stub driver
