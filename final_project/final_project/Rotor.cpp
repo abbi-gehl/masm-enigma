@@ -155,7 +155,7 @@ void Enigma::incrementRotors() {
 	return;
 }
 
-string Enigma::encrpyt(string word) { // Encryption algorithms originally made by Abbi, modified for use with the classes by Harrison
+string Enigma::encrypt(string word) { // Encryption algorithms originally made by Abbi, modified for use with the classes by Harrison
 	string encrypted = "";
 	initRotors();
 

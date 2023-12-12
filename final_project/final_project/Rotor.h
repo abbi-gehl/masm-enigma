@@ -51,7 +51,7 @@ public:
 	void initRotors();
 	void incrementRotors();
 
-	string encrpyt(string word);
+	string encrypt(string word);
 
 private:
 	Rotor rotors[3];
