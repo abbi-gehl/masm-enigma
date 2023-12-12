@@ -18,12 +18,12 @@ msg2 byte "assembly",0
 
 
 ;File data
-num QWORD 100
+num QWORD 256
 str1 BYTE "Input:		",0
 inputFile BYTE "input.txt",0
 outputFile BYTE "output.txt",0
-charBuffer byte 100 DUP (0)
-charBufferTEMP byte 100 DUP (0)
+charBuffer byte 256 DUP (0)
+charBufferTEMP byte 256 DUP (0)
 
 ;return data
 FD QWORD ?
@@ -82,7 +82,7 @@ _asmMain PROC
 
 	lea rcx, charBuffer
 	mov rdx, charsRead
- 	call _encrypt
+  	call _encrypt
 
 	;Opening output file by Abbi G, 
 	;adapted from https://github.com/brianrhall/Assembly/blob/master/Chapter_10/Program%2010.8/Program_10.8_Windows_MASM.asm
@@ -90,7 +90,7 @@ _asmMain PROC
 	mov rdx, 40000000h					; constant for GENERIC_WRITE
 	xor r8, r8							; 0 share mode
 	xor r9, r9							; 0 security
-	mov QWORD PTR [rsp+48h-28h], 3		; reverse order, 3 open existing
+	mov QWORD PTR [rsp+48h-28h], 2		; reverse order, 2 CREATE_ALWAYS, will truncate if file exists
 	mov QWORD PTR [rsp+48h-20h], 80h	; flags FILE_ATTRIBUTE_NORMAL
 	mov QWORD PTR [rsp+48h-18h], 0		; 0 template
 	call CreateFileA

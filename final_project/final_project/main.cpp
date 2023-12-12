@@ -33,7 +33,7 @@ extern "C" void _encrypt(char* buffer, int size) {
 	
 	cout << "Source:		" << str1 << endl;
 
-	str2 = machine.encrpyt(str1);
+	str2 = machine.encrypt(str1);
 
 	cout << "Encrypted:	" << str2 << endl;
 
