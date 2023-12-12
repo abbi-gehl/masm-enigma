@@ -19,6 +19,7 @@ msg2 byte "assembly",0
 
 ;File data
 num QWORD 100
+str1 BYTE "Input:		",0
 inputFile BYTE "input.txt",0
 outputFile BYTE "output.txt",0
 charBuffer byte 100 DUP (0)
@@ -67,18 +68,17 @@ _asmMain PROC
 	mov closed, rax				; save status
 	xor rax, rax
 
+	lea rcx, str1
+	call _printString
 
-	lea rcx, charBuffer
+	lea rcx,charBuffer
 	call _printString
 
 	call _newLine
+
 
 	call _iterateBuffer
-
-	lea rcx, charBuffer
-	call _printString
 	
-	call _newLine
 
 	lea rcx, charBuffer
 	mov rdx, 36

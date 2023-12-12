@@ -30,15 +30,11 @@ extern "C" void _encrypt(char* buffer, int size) {
 
 	Enigma machine;
 	
-	cout << "Source:" << str1 << endl;
+	cout << "Source:		" << str1 << endl;
 
 	str2 = machine.encrpyt(str1);
 
-	cout << "Encrypted:" << str2 << endl;
-
-	str3 = machine.encrpyt(str2);
-
-	cout << "Decrypted:" << str3 << endl;
+	cout << "Encrypted:	" << str2 << endl;
 
 	char* charArray = new char[size + 1];
 	strcpy_s(charArray, size, str2.c_str());
