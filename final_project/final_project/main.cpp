@@ -37,7 +37,7 @@ extern "C" void _encrypt(char* buffer, int size) {
 
 	cout << "Encrypted:	" << str2 << endl;
 
-	char* charArray = new char[aSize];s
+	char* charArray = new char[aSize];
 	strcpy_s(charArray, aSize+1, str2.c_str());
 	for (int i = 0; i < aSize; i++)
 	{
