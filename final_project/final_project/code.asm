@@ -81,8 +81,8 @@ _asmMain PROC
 	
 
 	lea rcx, charBuffer
-	mov rdx, 36
-	call _encrypt
+	mov rdx, charsRead
+ 	call _encrypt
 
 	;Opening output file by Abbi G, 
 	;adapted from https://github.com/brianrhall/Assembly/blob/master/Chapter_10/Program%2010.8/Program_10.8_Windows_MASM.asm

@@ -22,8 +22,9 @@ extern "C" void _encrypt(char* buffer, int size) {
 	string str1 = "";
 	string str2 = "";
 	string str3 = "";
+	int aSize = size;	//delcaring this locally because it was acting evil
 
-	for (int i = 0; i < size - 1; i++)
+	for (int i = 0; i < aSize; i++)
 	{
 		str1 = str1 + buffer[i];
 	}
@@ -36,12 +37,13 @@ extern "C" void _encrypt(char* buffer, int size) {
 
 	cout << "Encrypted:	" << str2 << endl;
 
-	char* charArray = new char[size + 1];
-	strcpy_s(charArray, size, str2.c_str());
-	for (int i = 0; i < size - 1; i++)
+	char* charArray = new char[aSize];s
+	strcpy_s(charArray, aSize+1, str2.c_str());
+	for (int i = 0; i < aSize; i++)
 	{
 		buffer[i] = charArray[i];
-	}
+	} 
+	return;
 }
 
 // main stub driver
